@@ -1,4 +1,7 @@
-﻿namespace GaiaSphere;
+﻿using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+
+namespace GaiaSphere;
 
 public partial class App : Application
 {
@@ -7,5 +10,12 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new AppShell();
+
+		LiveCharts.Configure(config =>
+			config
+				.AddSkiaSharp()
+				.AddDefaultMappers()
+				.AddDarkTheme()
+			);
 	}
 }

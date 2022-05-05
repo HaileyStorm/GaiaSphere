@@ -1,4 +1,6 @@
-﻿namespace GaiaSphere;
+﻿using SkiaSharp.Views.Maui.Controls.Hosting;
+
+namespace GaiaSphere;
 
 public static class MauiProgram
 {
@@ -6,6 +8,7 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
+			.UseSkiaSharp(true)
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{

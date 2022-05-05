@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GaiaSphere.MainPage">
+             x:Class="GaiaSphere.MainPage"
+             xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             >
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="25" Padding="30">
+    <FlexLayout Direction="Row" Padding="20" Margin="10">
 
+        <VerticalStackLayout>
             <Label 
                 Text="Hello, World!"
                 SemanticProperties.HeadingLevel="Level1"
@@ -36,10 +39,24 @@
             <Image
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                WidthRequest="250"
-                HeightRequest="310"
+                MaximumWidthRequest="250"    
+            MaximumHeightRequest="310"
                 HorizontalOptions="Center" />
-
         </VerticalStackLayout>
-    </ScrollView>
+
+
+        <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20" >
+            <Grid.BindingContext>
+                <local:TestChart/>
+            </Grid.BindingContext>
+            <lvc:CartesianChart
+                        Series="{Binding Series}"
+                    DrawMargin="{Binding Margin}"
+                        >
+            </lvc:CartesianChart>
+        </Grid>
+
+
+    </FlexLayout>
+
 </ContentPage>
