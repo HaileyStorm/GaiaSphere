@@ -34,7 +34,8 @@
                 FontAttributes="Bold"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" >
+            </Button>
 
             <Image
                 Source="dotnet_bot.png"

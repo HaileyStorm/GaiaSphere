@@ -21,5 +21,8 @@ namespace GaiaSphere
                     Fill = null
                 }
             };
+
+        //Series[0].Values = ((double[])Series[0].Values).Append(4);
+
     }
 }
