@@ -12,22 +12,40 @@
             <Label 
                 Text="Hello, World!"
                 SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Windows, MacCatalyst" Value="32"/>
+                        <On Platform="Android, iOS" Value="20"/>
+                    </OnPlatform>
+                </Label.FontSize>
+            </Label>
 
             <Label 
                 Text="Welcome to .NET Multi-platform App UI"
                 SemanticProperties.HeadingLevel="Level1"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Windows" Value="18"/>
+                        <On Platform="Android, iOS" Value="12"/>
+                    </OnPlatform>
+                </Label.FontSize>
+            </Label>
 
             <Label 
                 Text="Current count: 0"
-                FontSize="18"
                 FontAttributes="Bold"
                 x:Name="CounterLabel"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Windows" Value="18"/>
+                        <On Platform="Android, iOS" Value="12"/>
+                    </OnPlatform>
+                </Label.FontSize>
+            </Label>
 
             <Button 
                 Text="Click me"
@@ -35,18 +53,17 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" >
+                <Button.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Windows" Value="18"/>
+                        <On Platform="Android, iOS" Value="12"/>
+                    </OnPlatform>
+                </Button.FontSize>
             </Button>
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                MaximumWidthRequest="250"    
-            MaximumHeightRequest="310"
-                HorizontalOptions="Center" />
         </VerticalStackLayout>
 
 
-        <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20" >
+        <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20,5,0,0" >
             <Grid.BindingContext>
                 <local:TestChart/>
             </Grid.BindingContext>
