@@ -1,0 +1,14 @@
+﻿Min number of obs (typ=70) - gaia_source.phot_g[/bp/rp]_n_obs
+Min/max B/R excess factor (not sure typical) - gaia_source.phot_bp_rp_excess_factor
+Max contaminated/blended obs - gaia_source.phot_bp_n_contaminated_transits, phot_bp_n_blended_transits
+Exclude photometric calcs w/ data assumptions - gaia_source.phot_proc_mode (=1)
+Exclude photometrically variable sources - gaia_source.phot_variable_flag (="VARIABLE")
+Exclude sampled bp/rp spectra (vs. continuous) NOT gaia_source.has_xp_sampled (always exclude if ALSO NOT has_xp_continuous)
+Min (non-white-dwarf) single star probability - gaia_source.classprob_dsc_combmod_star
+Min metallicity (decimal log of iron:hydrogen) - gaia_source.mh_gspphot
+Max distance (parsecs) - gaia_source.distance_gspphot
+Min reddening (G band) - gaia_source.ag_gspphot
+Min extinction/reddening bp+rp:A0 (large ratio + sufficient reddening = possible non-interstellar medium reddening) - gaia_source.ebpminrp_gspphot, azero_gspphot
+Include stars of spectra type (c, m, k, g, f, a, b, o, default check K,G) - astrophysical_parameters.spectraltype_esphs
+Min/max age (Gyr) - astrophysical_parameters.age_flame
+Exclude late giants (default checked) - astrophysical_parameters.flags_flame (first digit="1") or evolstage_flame > 400

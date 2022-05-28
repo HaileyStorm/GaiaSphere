@@ -1,0 +1,80 @@
+https://www.cosmos.esa.int/documents/29201/5432054/DraftDataModel-DR3.pdf/d2049ffb-2cea-2581-4b66-2ea859686018?t=1648466925132
+
+G = broadband "white light" flux, ~350-1050nm
+BP = blue photometer, ~330-680nm (last third of near uv -> first half of red)
+RP = red photometer, ~640-1050nm (all but most orange of red -> first half of near infrared)
+
+
+GAIA_SOURCE table:
+SOURCE_ID, long
+PHOT_G_N_OBS, short (see epoch_photometry.n_transits(?), typically ~70)
+PHOT_G_MEAN_FLUX
+PHOT_G_MEAN_FLUX_ERROR
+PHOT_G_MEAN_MAG
+... same for BP, RP
+PHOT_BP_RP_EXCESS_FACTOR, float ... too high or low = inconsistency between G/BP/RP measurements (discard). See: Riello M., De Angeli F., Evans D.W., et al., May 2021, A&A, 649, A3
+PHOT_BP_N_CONTAMINATED_TRANSITS, PHOT_BP_N_BLENDED_TRANSITS & same for RP, short (nearby source contamination or multiple source blending - too many relative to N_OBS should discard, or perhaps *any*)
+PHOT_PROC_MODE, byte (method for photometric calcs, effectively 0=good, 1=some data assumptions, 2=bad; should exclude 2s and bin 0s/1s)
+BP_RP, BP_G, G_RP, float (bp mag - rp map, bp - g, g - rp, might use these instead of the mags if don't need the separate mags, to avoid doing the subtraction)
+PHOT_VARIABLE_FLAG, string (whether source is photometrically variable, NOT_AVAILABLE, CONSTANT or VARIABLE)
+[IN_QSO_CANDIDATES, bool (maybe quasi-stellar object, reject) - shouldn't need, see CLASSPROB]
+[IN_GALAXY_CANDIDATES, bool (maybe galaxy, reject) - shouldn't need, see CLASSPROB]
+[NON_SINGLE_STAR, short (reject if !=0) - shouldn't need, see CLASSPROB]
+HAS_EPOCH_PHOTOMETRY, bool (might be useful as quick reject)
+HAS_XP_CONTINUOUS, HAS_XP_SAMPLED, bool (bp/rp spectra continuous or sampled, use as data quality measure, continuous better)
+CLASSPROB_DSC_COMBMOD_STAR, float (probability non-white dwarf single star, for quality / rejection - can ignore other CLASSPROB columns)
+TEFF_GSPPHOT, float (effective temperature, kelvin)
+TEFF_GSPPHOT_LOWER, TEFF_GSPPHOT_UPPER, float (lower (16%) and upper (84%) confidence temp k, use for quality)
+LOGG_GSPPHOT, _LOWER, _UPPER, float (surface gravity, log cgs)
+MH_GSPPHOT, _LOWER, _UPPER, float (metallicity by way of iron abundance, decimal log of ratio of iron to hydrogen)
+DISTANCE_GSPPHOT, _LOWER, _UPPER, float (distance, parsecs)
+Extinction is blocking of stellar light from dust from interstellar medium, and such. Unit is mag. Dust in particular, a key factor for NOT dyson, blocks more blue than red.
+AZERO_GSPPHOT, _UPPER, _LOWER, float (extinction at 547.7nm - blue)
+AG_GSPPHOT, _LOWER, _UPPER, float (extinction in G band)
+EBPMINRP_GSPPHOT, _LOWER, _UPPER, float (total reddening from extinction from BP & RP ... can ignore BP & RP extinction, possibly G, but prob want to use A0 as a control for whether some of this is actually dyson reddening not extinction (if this is >> A0, some of this possibly dyson? - do an initial analysis on how this & A0 values typically correlate) ... would add this to BR_RP to get extinction-adjusted blueness ... one thing though, the BP band may be better area to look for vs all of G etc. since w/ our tech it includes most of what solar panels can collect, so might want to compare BP less BP extinction to RP less BP extinction (adjusted to the difference is width of wavelengths in each / only what would get shifted out of BP into RP as opposed to lower end of BP shifted toward red but still in BP range))
+ASTROMETRIC_EXCESS_NOISE, _SIG, float (excess noise of source as angle[mas], any excess >0 is bad if sig >=2) 
+
+
+ATROPHYSICAL_PARAMETERS table:
+SOURCE_ID
+MG_GSPPHOT, float (absolute magnitude)
+RADIUS_GSPPHOT, float (stellar radius ... unit?)
+SPECTRALTYPE_ESPHS, string (CSTAR, M, K, G, F, A, B ,O, see https://en.wikipedia.org/wiki/Stellar_classification for combining this w/ effective temp, color, mass etc. for finding outliers)
+LUM_FLAME, _LOWER, UPPER, float (luminosity)
+MASS_FLAME, _LOWER, _UPPER, float (solar mass)
+AGE_FLAME, _LOWER, _UPPER, float (Gyr)
+FLAGS_FLAME, string (two digits, first for mass 0=OK, 1=star is giant, 2=unavailable, second for distance 0=parallax, 1=distance_gspphot, 2=parallax because issues with dist)
+EVOLSTAGE_FLAME, int (evolutionary stage, i.e. main sequence vs red giant branch, reject if >400)
+
+
+EPOCH_PHOTOMETRY table:
+Not available via TAP, only Massive Data / VO Datalink (datalink is how to join from gaia_source) .. use this for second pass exclusion for possible matches or for quality measures of same
+SOURCE_ID (see gaia_source.source_id)
+N_TRANSITS, short (reject if too few? ~70 typical)
+G_TRANSIT_TIME, double[n_transits] (individual observation time, days after 2010/01/01)
+G_TRANSIT_FLUX, double[n_transits]
+G_TRANSIT_FLUX_ERROR, double[n_transits] (ignore if err/flux >x)
+G_TRANSIT_MAG, double[n_transits] (vega mag)
+BP_OBS_TIME, double[n_transits] (individual observation time, days after 2010/01/01)
+BP_FLUX, double[n_transits]
+BP_FLUX_ERROR, double[n_transits]
+BP_MAG, double[n_transits]
+RP_OBS_TIME, double[n_transits] (individual observation time, days after 2010/01/01)
+RP_FLUX, double[n_transits]
+RP_FLUX_ERROR, double[n_transits]
+RP_MAG, double[n_transits]
+May flags, bool[n_transits], all of which should be used to reject if true *except* the AF1-AF4 flags (AF5-AF8 are the best image quality CCD strips, so we DO want to reject if these unavailable/bad, or perhaps if more than one of them is unavailable/bad or if none are)
+Use the err/flux for rejection, but the mags for subsequent calcs (the flux itself isn't useful without adjusting for passbands/zero points)
+Photometric relationships with other sources: https://gea.esac.esa.int/archive/documentation/GDR2/Data_processing/chap_cu5pho/sec_cu5pho_calibr/ssec_cu5pho_PhotTransf.html
+
+
+Various cross-match tables to other catalogues (source names)
+
+
+VARI_PLANETARY_TRANSIT table:
+Planetary transit candidate events, which will be interesting to look at in cases of candidate dyson swarms - graph them
+SOURCE_ID
+TRANSIT_REFERENCE_TIME, double (representative mid-transit time, days after 2010/01/01 - can use this to overlap candidate "planetary" transits with epoch_photometry flux/mag time series ... combined with transit_period, can show all the points of transit not just a single representative one, and the depth of course can be compared to the variability in the epoch_photometry series)
+TRANSIT_PERIOD, double (days)
+TRANSIT_DEPTH, float (milli-mag)
+NUM_IN_TRANSIT, byte (cf gaia_source.phot_g_n_obs & epoch_photometry.n_transits)
