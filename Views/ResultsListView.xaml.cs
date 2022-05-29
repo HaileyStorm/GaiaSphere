@@ -1,3 +1,5 @@
+using GaiaSphere.DataModel;
+
 namespace GaiaSphere;
 
 public partial class ResultsListView : ContentView

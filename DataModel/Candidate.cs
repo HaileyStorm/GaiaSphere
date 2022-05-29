@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GaiaSphere
+namespace GaiaSphere.DataModel
 {
 
 
@@ -19,15 +19,16 @@ namespace GaiaSphere
         /// <summary>
         /// Used to synchronize selected candidate between Pages (instances of ResultsListView).
         /// </summary>
-        public static Candidate SelectedCandidate { get; set;}
+        public static Candidate SelectedCandidate { get; set; }
 
-        
+
         static Candidate()
         {
             All = new List<Candidate>();
 
             //TODO: Temporary
-            All.Add(new Candidate { 
+            All.Add(new Candidate
+            {
                 Name = "Test1",
                 Location = "Location",
                 Details = "Details"
@@ -54,5 +55,5 @@ namespace GaiaSphere
         }
     }
 
-    
+
 }

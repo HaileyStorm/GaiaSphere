@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GaiaSphere
+namespace GaiaSphere.Charts
 {
     public static class ResultsChart
     {

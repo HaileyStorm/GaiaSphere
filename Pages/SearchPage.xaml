@@ -65,8 +65,8 @@
 
         <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20,5,0,0" >
             <lvc:CartesianChart
-                        Series="{x:Static local:ResultsChart.Series}"
-                    DrawMargin="{x:Static local:ResultsChart.Margin}"
+                        Series="{x:Static local:Charts.ResultsChart.Series}"
+                    DrawMargin="{x:Static local:Charts.ResultsChart.Margin}"
                         >
             </lvc:CartesianChart>
         </Grid>

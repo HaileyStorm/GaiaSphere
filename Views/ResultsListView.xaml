@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GaiaSphere.ResultsListView"
              xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere">
-    <ListView ItemsSource="{x:Static local:Candidate.All}"
+    <ListView ItemsSource="{x:Static local:DataModel.Candidate.All}"
               ItemSelected="OnItemSelected"
               x:Name="ResultsList">
         <ListView.ItemTemplate>

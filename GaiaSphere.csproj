@@ -53,16 +53,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="DetailsPage.xaml">
+	  <MauiXaml Update="Pages\DetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ResultsListView.xaml">
+	  <MauiXaml Update="Views\ResultsListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SearchPage.xaml">
+	  <MauiXaml Update="Pages\SearchPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TransitsPage.xaml">
+	  <MauiXaml Update="Pages\TransitsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
