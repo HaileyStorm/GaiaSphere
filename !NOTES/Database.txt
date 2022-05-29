@@ -7,10 +7,12 @@ RP = red photometer, ~640-1050nm (all but most orange of red -> first half of ne
 
 GAIA_SOURCE table:
 SOURCE_ID, long
+RA, double (deg)
+Dec, double (deg)
 PHOT_G_N_OBS, short (see epoch_photometry.n_transits(?), typically ~70)
-PHOT_G_MEAN_FLUX
-PHOT_G_MEAN_FLUX_ERROR
-PHOT_G_MEAN_MAG
+PHOT_G_MEAN_FLUX, double (e-*s^-1)
+PHOT_G_MEAN_FLUX_ERROR, float
+PHOT_G_MEAN_MAG, float
 ... same for BP, RP
 PHOT_BP_RP_EXCESS_FACTOR, float ... too high or low = inconsistency between G/BP/RP measurements (discard). See: Riello M., De Angeli F., Evans D.W., et al., May 2021, A&A, 649, A3
 PHOT_BP_N_CONTAMINATED_TRANSITS, PHOT_BP_N_BLENDED_TRANSITS & same for RP, short (nearby source contamination or multiple source blending - too many relative to N_OBS should discard, or perhaps *any*)
@@ -25,7 +27,7 @@ HAS_XP_CONTINUOUS, HAS_XP_SAMPLED, bool (bp/rp spectra continuous or sampled, us
 CLASSPROB_DSC_COMBMOD_STAR, float (probability non-white dwarf single star, for quality / rejection - can ignore other CLASSPROB columns)
 TEFF_GSPPHOT, float (effective temperature, kelvin)
 TEFF_GSPPHOT_LOWER, TEFF_GSPPHOT_UPPER, float (lower (16%) and upper (84%) confidence temp k, use for quality)
-LOGG_GSPPHOT, _LOWER, _UPPER, float (surface gravity, log cgs)
+LOGG_GSPPHOT, _LOWER, _UPPER, float (surface gravity, log cgs - log base 10 cm/s^2)
 MH_GSPPHOT, _LOWER, _UPPER, float (metallicity by way of iron abundance, decimal log of ratio of iron to hydrogen)
 DISTANCE_GSPPHOT, _LOWER, _UPPER, float (distance, parsecs)
 Extinction is blocking of stellar light from dust from interstellar medium, and such. Unit is mag. Dust in particular, a key factor for NOT dyson, blocks more blue than red.
@@ -38,7 +40,7 @@ ASTROMETRIC_EXCESS_NOISE, _SIG, float (excess noise of source as angle[mas], any
 ATROPHYSICAL_PARAMETERS table:
 SOURCE_ID
 MG_GSPPHOT, float (absolute magnitude)
-RADIUS_GSPPHOT, float (stellar radius ... unit?)
+RADIUS_GSPPHOT, float (stellar radius, solar radii)
 SPECTRALTYPE_ESPHS, string (CSTAR, M, K, G, F, A, B ,O, see https://en.wikipedia.org/wiki/Stellar_classification for combining this w/ effective temp, color, mass etc. for finding outliers)
 LUM_FLAME, _LOWER, UPPER, float (luminosity)
 MASS_FLAME, _LOWER, _UPPER, float (solar mass)
