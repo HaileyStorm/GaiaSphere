@@ -1,80 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GaiaSphere.MainPage"
              xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              >
 
-    <FlexLayout Direction="Row" Padding="20" Margin="10">
+    <local:SearchPage/>
+    <local:DetailsPage/>
+    <local:TransitsPage/>
 
-        <VerticalStackLayout>
-            <Label 
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                HorizontalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="Windows, MacCatalyst" Value="32"/>
-                        <On Platform="Android, iOS" Value="20"/>
-                    </OnPlatform>
-                </Label.FontSize>
-            </Label>
-
-            <Label 
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level1"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                HorizontalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="Windows" Value="18"/>
-                        <On Platform="Android, iOS" Value="12"/>
-                    </OnPlatform>
-                </Label.FontSize>
-            </Label>
-
-            <Label 
-                Text="Current count: 0"
-                FontAttributes="Bold"
-                x:Name="CounterLabel"
-                HorizontalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="Windows" Value="18"/>
-                        <On Platform="Android, iOS" Value="12"/>
-                    </OnPlatform>
-                </Label.FontSize>
-            </Label>
-
-            <Button 
-                Text="Click me"
-                FontAttributes="Bold"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" >
-                <Button.FontSize>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="Windows" Value="18"/>
-                        <On Platform="Android, iOS" Value="12"/>
-                    </OnPlatform>
-                </Button.FontSize>
-            </Button>
-        </VerticalStackLayout>
-
-
-        <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20,5,0,0" >
-            <Grid.BindingContext>
-                <local:TestChart/>
-            </Grid.BindingContext>
-            <lvc:CartesianChart
-                        Series="{Binding Series}"
-                    DrawMargin="{Binding Margin}"
-                        >
-            </lvc:CartesianChart>
-        </Grid>
-
-
-    </FlexLayout>
-
-</ContentPage>
+</TabbedPage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GaiaSphere.TransitsPage"
+             Title="TransitsPage"
+             IconImageSource="dotnet_bot.svg"
+             xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             NavigatedTo="OnNavigatedTo"
+             >
+    <FlexLayout Direction="Row" Padding="20" Margin="10">
+
+        <local:ResultsListView FlexLayout.Grow="0" FlexLayout.Basis="30%" x:Name="ResultsList"/>
+
+
+        <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20,5,0,0" >
+            <lvc:CartesianChart
+                        Series="{x:Static local:TransitsChart.Series}"
+                    DrawMargin="{x:Static local:TransitsChart.Margin}"
+                        >
+            </lvc:CartesianChart>
+        </Grid>
+
+    </FlexLayout>
+</ContentPage>

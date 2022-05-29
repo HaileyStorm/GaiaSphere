@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace GaiaSphere
 {
-    public class TestChart
+    public static class ResultsChart
     {
-        public LiveChartsCore.Measure.Margin Margin { get; set; } = new LiveChartsCore.Measure.Margin(40, 20, 600, 40);
+        public static LiveChartsCore.Measure.Margin Margin { get; set; }
 
-        public ISeries[] Series { get; set; }
-            = new ISeries[]
+        public static ISeries[] Series { get; set; }
+
+        static ResultsChart()
+        {
+            Margin = new LiveChartsCore.Measure.Margin(40, 20, 600, 40);
+
+            Series = new ISeries[]
             {
                 new LineSeries<double>
                 {
@@ -21,8 +26,6 @@ namespace GaiaSphere
                     Fill = null
                 }
             };
-
-        //Series[0].Values = ((double[])Series[0].Values).Append(4);
-
+        }
     }
 }

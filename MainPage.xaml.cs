@@ -1,20 +1,13 @@
 ﻿namespace GaiaSphere;
 
-public partial class MainPage : ContentPage
+public partial class MainPage : TabbedPage
 {
-	int count = 0;
-
+	
 	public MainPage()
 	{
 		InitializeComponent();
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
-		CounterLabel.Text = $"Current count: {count}";
-
-		SemanticScreenReader.Announce(CounterLabel.Text);
-	}
+	
 }
 
