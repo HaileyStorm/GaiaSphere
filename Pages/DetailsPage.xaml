@@ -8,7 +8,7 @@
              NavigatedTo="OnNavigatedTo">
     <FlexLayout Direction="Row" Padding="20" Margin="10">
 
-        <local:ResultsListView FlexLayout.Grow="0" FlexLayout.Basis="30%" x:Name="ResultsList"/>
+        <local:ResultsListView FlexLayout.Grow="0" FlexLayout.Basis="20%" x:Name="ResultsList" />
 
         <!-- GridLayout, or something -->
 

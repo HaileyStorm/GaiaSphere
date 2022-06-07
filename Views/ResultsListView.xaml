@@ -2,46 +2,84 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GaiaSphere.ResultsListView"
-             xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere">
-    <ListView ItemsSource="{x:Static local:DataModel.Candidate.All}"
+             xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
+             xmlns:data="clr-namespace:GaiaSphere.DataModel;assembly=GaiaSphere">
+    <ListView ItemsSource="{x:Static data:Candidate.All}"
               ItemSelected="OnItemSelected"
               x:Name="ResultsList">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Padding="2" RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="2">
-                        <Label Grid.Row="1"
-                           Grid.Column="1"
+                    <Grid Padding="2" RowDefinitions="Auto,Auto" ColumnDefinitions="80,100,100,90" ColumnSpacing="2">
+                        <!-- Row 0 -->
+                        <Label Grid.Row="0"
+                           Grid.Column="0"
                            Text="{Binding Summary.ShortSource}"
                            FontAttributes="Bold"
                            HorizontalOptions="Start" />
-                        <Label Grid.Row="1"
-                           Grid.Column="2"
-                           HorizontalOptions="Center">
+                        <Label Grid.Row="0"
+                           Grid.Column="1"
+                           HorizontalOptions="Start">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="RA: " />
-                                    <Span Text="{Binding Summary.RA, StringFormat='{0:F3}'}" FontAttributes="Italic" />
+                                    <Span Text="{Binding Summary.RA, StringFormat='{0:F3}°'}" FontAttributes="Italic" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Row="0"
+                           Grid.Column="2"
+                           HorizontalOptions="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Dec: " />
+                                    <Span Text="{Binding Summary.Dec, StringFormat='{0:F3}°'}" FontAttributes="Italic" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Row="0"
+                           Grid.Column="3"
+                           HorizontalOptions="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Dist: " />
+                                    <Span Text="{Binding Summary.Dist, StringFormat='{0:F2}pc'}" FontAttributes="Italic" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <!-- Row 1 -->
+                        <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding Summary.Class, StringFormat='{0}-Type'}" TextColor="{Binding Summary.ClassColor}"
+                           HorizontalOptions="Start" />
+                        <Label Grid.Row="1"
+                           Grid.Column="1"
+                           HorizontalOptions="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Teff: " />
+                                    <Span Text="{Binding Summary.Teff, StringFormat='{0:F0}K'}" FontAttributes="Italic" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Row="1"
+                           Grid.Column="2"
+                           HorizontalOptions="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Age: " />
+                                    <Span Text="{Binding Summary.Age, StringFormat='{0:F1}Gyr'}" FontAttributes="Italic" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
                         <Label Grid.Row="1"
                            Grid.Column="3"
-                           HorizontalOptions="Center">
+                           HorizontalOptions="Start">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="Dec: " />
-                                    <Span Text="{Binding Summary.Dec, StringFormat='{0:F3}'}" FontAttributes="Italic" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Grid.Row="1"
-                           Grid.Column="4"
-                           HorizontalOptions="End">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="Dist: " />
-                                    <Span Text="{Binding Summary.Dist, StringFormat='{0:F2}pc'}" FontAttributes="Italic" />
+                                    <Span Text="Mag: " />
+                                    <Span Text="{Binding Summary.Mag, StringFormat='{0:F1}'}" FontAttributes="Italic" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>

@@ -13,6 +13,9 @@ namespace GaiaSphere.DataModel
         /// The Gaia Source ID; the primary key.
         /// </summary>
         public ulong SourceID { get; set; }
+        /// <summary>
+        /// An abbreviated representation of the SourceID; the first and last 3 digits.
+        /// </summary>
         public string ShortSource
         {
             get
@@ -37,6 +40,28 @@ namespace GaiaSphere.DataModel
         /// Stellar class / spectral type (C, M, K, G, F, A, B ,O).
         /// </summary>
         public string Class { get; set; }
+        public Color ClassColor
+        {
+            get
+            {
+                return Class switch
+                {
+                    "C" => Colors.Red,
+                    "M" => Colors.OrangeRed,
+                    "K" => Colors.Orange,
+                    "G" => Colors.PapayaWhip,
+                    "F" => Colors.FloralWhite,
+                    "A" => Colors.LightSkyBlue,
+                    "B" => Colors.CornflowerBlue,
+                    "O" => Colors.DodgerBlue,
+                    _ => Colors.Black,
+                };
+            }
+        }
+        /// <summary>
+        /// Effective temperature (kelvin).
+        /// </summary>
+        public float Teff { get; set; }
         /// <summary>
         /// Age (billions of years).
         /// </summary>
@@ -45,10 +70,7 @@ namespace GaiaSphere.DataModel
         /// Magnitude (Vega zero-point).
         /// </summary>
         public float Mag { get; set; }
-        /// <summary>
-        /// Effective temperature (kelvin).
-        /// </summary>
-        public float Teff { get; set; }
+        
     }
 
     public class CandidateDetails
@@ -87,10 +109,24 @@ namespace GaiaSphere.DataModel
         public CandidateTransits Transits { get; set; }
 
         public static List<Candidate> All { get; private set; }
+        private static Candidate _selectedCandidate;
         /// <summary>
         /// Used to synchronize selected candidate between Pages (instances of ResultsListView).
         /// </summary>
-        public static Candidate SelectedCandidate { get; set; }
+        public static Candidate SelectedCandidate
+        {
+            get { return _selectedCandidate; }
+            set
+            {
+                _selectedCandidate = value;
+                CandidateSelected?.Invoke(value, EventArgs.Empty);
+            }
+        }
+        /// <summary>
+        /// Raised when the SelectedCandidate (which is also the selected Candidate in the common ResultsListView) changes.
+        /// Note that the typical sender object is instead used as the candidate itself to avoid the need to create an EventArgs class etc..
+        /// </summary>
+        public static event EventHandler CandidateSelected;
 
 
         static Candidate()
@@ -104,7 +140,11 @@ namespace GaiaSphere.DataModel
                     SourceID = 18446744073709551615,
                     RA = 25.43273943,
                     Dec = 41.0923418283,
-                    Dist = 1.254f
+                    Dist = 1.254f,
+                    Class = "K",
+                    Teff = 4035.21f,
+                    Age = 3.21f,
+                    Mag = 7.3f
                 },
                 Details = new CandidateDetails { },
                 Photometry = new CandidatePhotometry { },
@@ -116,7 +156,11 @@ namespace GaiaSphere.DataModel
                     SourceID = 4356744073709550432,
                     RA = 1.90837423,
                     Dec = 80.2304193,
-                    Dist = 7.02823f
+                    Dist = 7.02823f,
+                    Class = "F",
+                    Teff = 6242.17f,
+                    Age = 1.17f,
+                    Mag = 1.7f
                 },
                 Details = new CandidateDetails { },
                 Photometry = new CandidatePhotometry { },
@@ -128,7 +172,11 @@ namespace GaiaSphere.DataModel
                     SourceID = 10126744073709550923,
                     RA = 72.038471834743,
                     Dec = 9.83401834,
-                    Dist = 22.31634f
+                    Dist = 22.31634f,
+                    Class = "B",
+                    Teff = 29028.94f,
+                    Age = 5.22f,
+                    Mag = -6.0f
                 },
                 Details = new CandidateDetails { },
                 Photometry = new CandidatePhotometry { },

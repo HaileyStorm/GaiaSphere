@@ -10,13 +10,15 @@
              >
     <FlexLayout Direction="Row" Padding="20" Margin="10">
 
-        <local:ResultsListView FlexLayout.Grow="0" FlexLayout.Basis="30%" x:Name="ResultsList"/>
+        <local:ResultsListView FlexLayout.Grow="0" FlexLayout.Basis="20%" x:Name="ResultsList"/>
 
 
-        <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20,5,0,0" >
+        <Grid FlexLayout.Grow="1" FlexLayout.Basis="80%" Padding="20,5,0,0" >
             <lvc:CartesianChart
-                        Series="{x:Static local:Charts.TransitsChart.Series}"
+                
+                        Series= "{x:Static local:Charts.TransitsChart.Series}"
                     DrawMargin="{x:Static local:Charts.TransitsChart.Margin}"
+                    x:Name="Chart"
                         >
             </lvc:CartesianChart>
         </Grid>
