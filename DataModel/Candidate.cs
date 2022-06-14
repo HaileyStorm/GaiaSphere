@@ -118,8 +118,9 @@ namespace GaiaSphere.DataModel
             get { return _selectedCandidate; }
             set
             {
+                var prev = _selectedCandidate;
                 _selectedCandidate = value;
-                CandidateSelected?.Invoke(value, EventArgs.Empty);
+                if (prev != value) CandidateSelected?.Invoke(value, EventArgs.Empty);
             }
         }
         /// <summary>

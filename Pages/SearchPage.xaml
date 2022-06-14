@@ -3,16 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GaiaSphere.SearchPage"
              Title="SearchPage"
-             IconImageSource="dotnet_bot.svg"
+             IconImageSource=""
              xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
     <FlexLayout Direction="Row" Padding="20" Margin="10">
 
-        <VerticalStackLayout>
-            <Label 
+        <Grid FlexLayout.Basis="22%" Padding="2" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,85,Auto" ColumnSpacing="10">
+            <Label
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                 Text="Welcome to GaiaSphere!"
-                SemanticProperties.HeadingLevel="Level1"
-                HorizontalOptions="Center">
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Margin="0,0,0,15">
                 <Label.FontSize>
                     <OnPlatform x:TypeArguments="x:Double">
                         <On Platform="Windows, MacCatalyst" Value="32"/>
@@ -21,37 +23,38 @@
                 </Label.FontSize>
             </Label>
 
-            <Label 
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level1"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                HorizontalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="Windows" Value="18"/>
-                        <On Platform="Android, iOS" Value="12"/>
-                    </OnPlatform>
-                </Label.FontSize>
-            </Label>
+            <!-- Control labels -->
+            <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                <Label
+                    Text="Min. # of observations"
+                    HorizontalOptions="Start"
+                    VerticalOptions="End"
+                    Margin="0,6,0,0" />
+            </VerticalStackLayout>
 
-            <Label 
-                Text="Current count: 0"
-                FontAttributes="Bold"
-                x:Name="CounterLabel"
-                HorizontalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="Windows" Value="18"/>
-                        <On Platform="Android, iOS" Value="12"/>
-                    </OnPlatform>
-                </Label.FontSize>
-            </Label>
+            <!-- Controls (except Search button) -->
+            <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                <Slider
+                    Maximum="70"
+                    VerticalOptions="Start"
+                    x:Name="slNumObs" />
+            </VerticalStackLayout>
+
+            <!-- Control values/units -->
+            <VerticalStackLayout Grid.Row="1" Grid.Column="2">
+                <Label
+                    Text="{Binding Source={x:Reference slNumObs}, Path=Value, StringFormat='{0:F0}'}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="End"
+                    Margin="0,6,0,0" />
+            </VerticalStackLayout>
 
             <Button 
-                Text="Click me"
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                Margin="15"
+                Text="Search"
                 FontAttributes="Bold"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                Clicked="OnSearchClicked"
                 HorizontalOptions="Center" >
                 <Button.FontSize>
                     <OnPlatform x:TypeArguments="x:Double">
@@ -60,14 +63,13 @@
                     </OnPlatform>
                 </Button.FontSize>
             </Button>
-        </VerticalStackLayout>
-
+        </Grid>
 
         <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20,5,0,0" >
             <lvc:CartesianChart
-                        Series="{x:Static local:Charts.ResultsChart.Series}"
-                    DrawMargin="{x:Static local:Charts.ResultsChart.Margin}"
-                        >
+                Series="{x:Static local:Charts.ResultsChart.Series}"
+                DrawMargin="{x:Static local:Charts.ResultsChart.Margin}"
+                x:Name="Chart">
             </lvc:CartesianChart>
         </Grid>
     </FlexLayout>

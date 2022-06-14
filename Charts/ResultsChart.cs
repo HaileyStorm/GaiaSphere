@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace GaiaSphere.Charts
 {
+    /// <summary>
+    /// Manages the SearchPage results chart, which is a scatter plot of candidates with x-axis=RA*cos(DEC) [0-360] and y-axis=DEC [-90 - 90]
+    /// Would like color to represent spectral type and size to represent distance ... may need to bucket size and have separate series for
+    /// each spectral type, depending on LiveCharts functionality.
+    /// </summary>
     public static class ResultsChart
     {
         public static LiveChartsCore.Measure.Margin Margin { get; set; }

@@ -18,7 +18,7 @@
                 
                         Series= "{x:Static local:Charts.TransitsChart.Series}"
                     DrawMargin="{x:Static local:Charts.TransitsChart.Margin}"
-                    x:Name="Chart"
+                    x:Name="Chart" x:FieldModifier="Public"
                         >
             </lvc:CartesianChart>
         </Grid>

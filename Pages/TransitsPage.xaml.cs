@@ -12,6 +12,7 @@ public partial class TransitsPage : ContentPage
     {
 		//TODO: Update TransitsChart, based on candidate
 		Charts.TransitsChart.AddValue(1);
+		Chart.CoreChart.Update();
 	}
 
 	private void OnNavigatedTo(object sender, NavigatedToEventArgs e)
