@@ -67,10 +67,10 @@
 
         <Grid FlexLayout.Grow="1" FlexLayout.Basis="70%" Padding="20,5,0,0" >
             <lvc:CartesianChart
-                Series="{x:Static local:Charts.ResultsChart.Series}"
-                DrawMargin="{x:Static local:Charts.ResultsChart.Margin}"
-                x:Name="Chart">
-            </lvc:CartesianChart>
+                BindingContext="{x:Static local:Charts.ResultsChart.Instance}"
+                Series="{Binding Series}"
+                DrawMargin="{Binding Margin}"
+                x:Name="Chart" />
         </Grid>
     </FlexLayout>
 </ContentPage>

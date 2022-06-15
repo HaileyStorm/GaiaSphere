@@ -10,8 +10,8 @@ public partial class TransitsPage : ContentPage
 
 	public void OnCandidateSelected(object candidate, EventArgs e)
     {
-		//TODO: Update TransitsChart, based on candidate
-		Charts.TransitsChart.AddValue(1);
+		//TODO: Update TransitsChart, based on candidate (override the getter for TransitsChart.Series instead?)
+		Charts.TransitsChart.Instance.AddValue(1);
 		Chart.CoreChart.Update();
 	}
 
