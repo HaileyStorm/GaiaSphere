@@ -23,6 +23,16 @@ namespace GaiaSphere.Charts
     /// </summary>
     public class Chart
     {
+        protected static LiveChartsCore.SkiaSharpView.Maui.CartesianChart lvcchart;
+        /// <summary>
+        /// The LVCharts object defined in the page XAML where the chart appears. Assign this value in that page's code-behind.
+        /// </summary>
+        public virtual LiveChartsCore.SkiaSharpView.Maui.CartesianChart LVCChart
+        {
+            get { return lvcchart; }
+            set { lvcchart = value; }
+        }
+
         protected static LiveChartsCore.Measure.Margin margin;
         public virtual LiveChartsCore.Measure.Margin Margin {
             get { return margin; }
@@ -56,14 +66,25 @@ namespace GaiaSphere.Charts
                 Values = values.ToList(),
                 Fill = fill
             }).ToArray();
+            UpdateChart();
         }
         public virtual void AddValue(double value, int series = 0)
         {
             ((List<double>)Series[series].Values).Add(value);
+            UpdateChart();
         }
         public virtual void AddValues(IEnumerable<double> values, int series = 0)
         {
             ((List<double>)Series[series].Values).AddRange(values);
+            UpdateChart();
+        }
+
+        public virtual void UpdateChart()
+        {
+            if (LVCChart != null)
+            {
+                LVCChart.CoreChart.Update();
+            }
         }
     }
 }

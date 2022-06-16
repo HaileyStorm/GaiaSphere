@@ -70,6 +70,7 @@
                 BindingContext="{x:Static local:Charts.ResultsChart.Instance}"
                 Series="{Binding Series}"
                 DrawMargin="{Binding Margin}"
+                AutoUpdateEnabled="False"
                 x:Name="Chart" />
         </Grid>
     </FlexLayout>

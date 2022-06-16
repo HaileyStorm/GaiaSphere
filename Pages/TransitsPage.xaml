@@ -18,7 +18,8 @@
                 BindingContext="{x:Static local:Charts.TransitsChart.Instance}"
                 Series="{Binding Series}"
                 DrawMargin="{Binding Margin}"
-                x:Name="Chart" x:FieldModifier="Public" />
+                AutoUpdateEnabled="False"
+                x:Name="Chart" />
         </Grid>
 
     </FlexLayout>
