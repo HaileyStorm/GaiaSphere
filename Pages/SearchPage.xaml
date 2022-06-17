@@ -14,7 +14,8 @@
                 Text="Welcome to GaiaSphere!"
                 HorizontalOptions="Center"
                 VerticalOptions="Start"
-                Margin="0,0,0,15">
+                Margin="0,0,0,15"
+                x:Name="lblTitle">
                 <Label.FontSize>
                     <OnPlatform x:TypeArguments="x:Double">
                         <On Platform="Windows, MacCatalyst" Value="32"/>
