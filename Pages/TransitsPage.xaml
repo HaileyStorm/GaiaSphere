@@ -18,7 +18,7 @@
                 BindingContext="{x:Static local:Charts.TransitsChart.Instance}"
                 Series="{Binding Series}"
                 DrawMargin="{Binding Margin}"
-                AutoUpdateEnabled="False"
+                
                 x:Name="Chart" />
         </Grid>
 
