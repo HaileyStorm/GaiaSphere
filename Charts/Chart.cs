@@ -96,15 +96,15 @@ namespace GaiaSphere.Charts
 
 
         internal static event EventHandler PageLoaded;
-        internal static void InvokePageLoaded() { PageLoaded?.Invoke(null, EventArgs.Empty); }
+        internal static void OnPageLoaded_All(object sender, EventArgs e) { PageLoaded?.Invoke(sender, e); }
         internal virtual void OnPageLoaded(object sender, EventArgs e) { CalculateMargin(); }
         
         internal static event EventHandler DisplayInfoChanged;
-        internal static void InvokeDisplayInfoChanged() {  DisplayInfoChanged?.Invoke(null, EventArgs.Empty); }
+        internal static void OnDisplayInfoChanged_All(object sender, EventArgs e) {  DisplayInfoChanged?.Invoke(sender, e); }
         internal virtual void OnDisplayInfoChanged(object sender, EventArgs e) { CalculateMargin(); }
 
         internal static event EventHandler WindowInfoChanged;
-        internal static void InvokeWindowInfoChanged() { WindowInfoChanged?.Invoke(null, EventArgs.Empty); }
+        internal static void OnWindowInfoChanged_All(object sender, EventArgs e) { WindowInfoChanged?.Invoke(sender, e); }
         internal virtual void OnWindowInfoChanged(object sender, EventArgs e) { CalculateMargin(); }
 
         protected virtual void CalculateMargin()

@@ -5,6 +5,7 @@ public partial class DetailsPage : ContentPage
 	public DetailsPage()
 	{
 		InitializeComponent();
+
 		DataModel.Candidate.CandidateSelected += OnCandidateSelected;
 	}
 

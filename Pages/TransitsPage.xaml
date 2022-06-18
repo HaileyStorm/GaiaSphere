@@ -6,9 +6,7 @@
              IconImageSource="dotnet_bot.svg"
              xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
-             NavigatedTo="OnNavigatedTo"
-             Loaded="OnPageLoaded"
-             >
+             NavigatedTo="OnNavigatedTo">
     <FlexLayout Direction="Row" Padding="20" Margin="10">
 
         <local:ResultsListView FlexLayout.Grow="0" FlexLayout.Basis="20%" x:Name="ResultsList"/>

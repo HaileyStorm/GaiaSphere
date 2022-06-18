@@ -24,13 +24,11 @@ public partial class MainPage : TabbedPage
 		WindowInfo.HeightPt = Height;
 		WindowInfo.HeightPx = Height * DisplayInfo.Density;
 
-		Window.DisplayDensityChanged += delegate (object sender, DisplayDensityChangedEventArgs e)
+		Window.DisplayDensityChanged += new EventHandler<DisplayDensityChangedEventArgs>( delegate (object sender, DisplayDensityChangedEventArgs e)
 		{
-			DisplayInfo.Density = e.DisplayDensity;
-
-			Charts.Chart.InvokeDisplayInfoChanged();
-		};
-		DeviceDisplay.Current.MainDisplayInfoChanged += delegate (object sender, DisplayInfoChangedEventArgs e)
+			DisplayInfo.Density = Window.DisplayDensity;
+		}) + Charts.Chart.OnDisplayInfoChanged_All;
+		DeviceDisplay.Current.MainDisplayInfoChanged += new EventHandler<DisplayInfoChangedEventArgs>( delegate (object sender, DisplayInfoChangedEventArgs e)
 		{
 			DisplayInfo.WidthPx = e.DisplayInfo.Width;
 			DisplayInfo.WidthPt = DisplayInfo.WidthPx / DisplayInfo.Density;
@@ -38,18 +36,14 @@ public partial class MainPage : TabbedPage
 			DisplayInfo.HeightPt = DisplayInfo.HeightPx / DisplayInfo.Density;
 			DisplayInfo.Orientation = e.DisplayInfo.Orientation;
 			DisplayInfo.Rotation = e.DisplayInfo.Rotation;
-
-			Charts.Chart.InvokeDisplayInfoChanged();
-		};
-		SizeChanged += delegate (object sender, EventArgs e)
+		}) + Charts.Chart.OnDisplayInfoChanged_All;
+		SizeChanged += new EventHandler( delegate (object sender, EventArgs e)
 		{
 			WindowInfo.WidthPt = Width;
 			WindowInfo.WidthPx = Width * DisplayInfo.Density;
 			WindowInfo.HeightPt = Height;
 			WindowInfo.HeightPx = Height * DisplayInfo.Density;
-
-			Charts.Chart.InvokeWindowInfoChanged();
-		};
+		}) + Charts.Chart.OnWindowInfoChanged_All;
 	}
 }
 

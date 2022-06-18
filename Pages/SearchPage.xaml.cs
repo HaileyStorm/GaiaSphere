@@ -8,15 +8,12 @@ public partial class SearchPage : ContentPage
 		InitializeComponent();
 
 		Charts.ResultsChart.Instance.LVCChart = Chart;
+		Loaded += Charts.ResultsChart.Instance.OnPageLoaded;
+		NavigatedTo += Charts.ResultsChart.Instance.OnPageLoaded;
 	}
 
 	private void OnSearchClicked(object sender, EventArgs e)
 	{
 		
-	}
-
-    private void OnPageLoaded(object sender, EventArgs e)
-    {
-		Charts.ResultsChart.Instance.OnPageLoaded(null, EventArgs.Empty);
 	}
 }

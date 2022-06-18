@@ -7,7 +7,10 @@ public partial class TransitsPage : ContentPage
 		InitializeComponent();
 
 		DataModel.Candidate.CandidateSelected += OnCandidateSelected;
+		
 		Charts.TransitsChart.Instance.LVCChart = Chart;
+		Loaded += Charts.TransitsChart.Instance.OnPageLoaded;
+		NavigatedTo += Charts.TransitsChart.Instance.OnPageLoaded;
 	}
 
 	public void OnCandidateSelected(object candidate, EventArgs e)
@@ -23,6 +26,6 @@ public partial class TransitsPage : ContentPage
 
     private void OnPageLoaded(object sender, EventArgs e)
     {
-		Charts.TransitsChart.Instance.OnPageLoaded(null, EventArgs.Empty);
+		
 	}
 }
