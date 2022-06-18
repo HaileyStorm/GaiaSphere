@@ -28,7 +28,7 @@ public partial class MainPage : TabbedPage
 		{
 			DisplayInfo.Density = e.DisplayDensity;
 
-			Charts.Chart.DisplayInfoChanged();
+			Charts.Chart.InvokeDisplayInfoChanged();
 		};
 		DeviceDisplay.Current.MainDisplayInfoChanged += delegate (object sender, DisplayInfoChangedEventArgs e)
 		{
@@ -39,7 +39,7 @@ public partial class MainPage : TabbedPage
 			DisplayInfo.Orientation = e.DisplayInfo.Orientation;
 			DisplayInfo.Rotation = e.DisplayInfo.Rotation;
 
-			Charts.Chart.DisplayInfoChanged();
+			Charts.Chart.InvokeDisplayInfoChanged();
 		};
 		SizeChanged += delegate (object sender, EventArgs e)
 		{
@@ -48,7 +48,7 @@ public partial class MainPage : TabbedPage
 			WindowInfo.HeightPt = Height;
 			WindowInfo.HeightPx = Height * DisplayInfo.Density;
 
-			Charts.Chart.WindowInfoChanged();
+			Charts.Chart.InvokeWindowInfoChanged();
 		};
 	}
 }

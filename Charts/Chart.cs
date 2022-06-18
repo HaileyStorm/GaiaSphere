@@ -23,7 +23,7 @@ namespace GaiaSphere.Charts
     /// </summary>
     public class Chart
     {
-        private static List<Chart> Charts = new();
+        // private static List<Chart> Charts = new();
 
         protected static LiveChartsCore.SkiaSharpView.Maui.CartesianChart lvcchart;
         /// <summary>
@@ -59,7 +59,10 @@ namespace GaiaSphere.Charts
                 }
             };
 
-            Charts.Add(this);
+            //Charts.Add(this);
+            PageLoaded += OnPageLoaded;
+            DisplayInfoChanged += OnDisplayInfoChanged;
+            WindowInfoChanged += OnWindowInfoChanged;
         }
 
         internal virtual void AddSeries(IEnumerable<double> values = null, LiveChartsCore.Drawing.IPaint<LiveChartsCore.SkiaSharpView.Drawing.SkiaSharpDrawingContext> fill = null)
@@ -92,21 +95,17 @@ namespace GaiaSphere.Charts
         }
 
 
-        internal static void PageLoaded()
-        {
-            foreach (Chart c in Charts) c.OnPageLoaded();
-        }
-        internal virtual void OnPageLoaded() { CalculateMargin(); }
-        internal static void DisplayInfoChanged()
-        {
-            foreach (Chart c in Charts) c.OnDisplayInfoChanged();
-        }
-        internal virtual void OnDisplayInfoChanged() { CalculateMargin(); }
-        internal static void WindowInfoChanged()
-        {
-            foreach (Chart c in Charts) c.OnWindowInfoChanged();
-        }
-        internal virtual void OnWindowInfoChanged() { CalculateMargin(); }
+        internal static event EventHandler PageLoaded;
+        internal static void InvokePageLoaded() { PageLoaded?.Invoke(null, EventArgs.Empty); }
+        internal virtual void OnPageLoaded(object sender, EventArgs e) { CalculateMargin(); }
+        
+        internal static event EventHandler DisplayInfoChanged;
+        internal static void InvokeDisplayInfoChanged() {  DisplayInfoChanged?.Invoke(null, EventArgs.Empty); }
+        internal virtual void OnDisplayInfoChanged(object sender, EventArgs e) { CalculateMargin(); }
+
+        internal static event EventHandler WindowInfoChanged;
+        internal static void InvokeWindowInfoChanged() { WindowInfoChanged?.Invoke(null, EventArgs.Empty); }
+        internal virtual void OnWindowInfoChanged(object sender, EventArgs e) { CalculateMargin(); }
 
         protected virtual void CalculateMargin()
         {

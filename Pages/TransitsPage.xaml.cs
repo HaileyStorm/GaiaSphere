@@ -23,6 +23,6 @@ public partial class TransitsPage : ContentPage
 
     private void OnPageLoaded(object sender, EventArgs e)
     {
-		Charts.TransitsChart.Instance.OnPageLoaded();
+		Charts.TransitsChart.Instance.OnPageLoaded(null, EventArgs.Empty);
 	}
 }

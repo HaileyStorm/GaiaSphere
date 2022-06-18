@@ -17,6 +17,6 @@ public partial class SearchPage : ContentPage
 
     private void OnPageLoaded(object sender, EventArgs e)
     {
-		Charts.ResultsChart.Instance.OnPageLoaded();
+		Charts.ResultsChart.Instance.OnPageLoaded(null, EventArgs.Empty);
 	}
 }
