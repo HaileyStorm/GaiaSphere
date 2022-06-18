@@ -83,7 +83,7 @@ namespace GaiaSphere.Charts
             UpdateChart();
         }
 
-        public virtual void UpdateChart()
+        protected virtual void UpdateChart()
         {
             if (LVCChart != null)
             {
@@ -101,12 +101,12 @@ namespace GaiaSphere.Charts
         {
             foreach (Chart c in Charts) c.OnDisplayInfoChanged();
         }
-        public virtual void OnDisplayInfoChanged() { CalculateMargin(); }
+        internal virtual void OnDisplayInfoChanged() { CalculateMargin(); }
         internal static void WindowInfoChanged()
         {
             foreach (Chart c in Charts) c.OnWindowInfoChanged();
         }
-        public virtual void OnWindowInfoChanged() { CalculateMargin(); }
+        internal virtual void OnWindowInfoChanged() { CalculateMargin(); }
 
         protected virtual void CalculateMargin()
         {
