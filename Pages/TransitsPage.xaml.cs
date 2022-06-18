@@ -20,4 +20,9 @@ public partial class TransitsPage : ContentPage
     {
 		ResultsList.UpdateSelection();
     }
+
+    private void OnPageLoaded(object sender, EventArgs e)
+    {
+		Charts.TransitsChart.Instance.OnPageLoaded();
+	}
 }

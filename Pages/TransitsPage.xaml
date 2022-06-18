@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              NavigatedTo="OnNavigatedTo"
+             Loaded="OnPageLoaded"
              >
     <FlexLayout Direction="Row" Padding="20" Margin="10">
 

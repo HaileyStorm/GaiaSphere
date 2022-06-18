@@ -23,6 +23,8 @@ namespace GaiaSphere.Charts
     /// </summary>
     public class Chart
     {
+        private static List<Chart> Charts = new();
+
         protected static LiveChartsCore.SkiaSharpView.Maui.CartesianChart lvcchart;
         /// <summary>
         /// The LVCharts object defined in the page XAML where the chart appears. Assign this value in that page's code-behind.
@@ -56,9 +58,11 @@ namespace GaiaSphere.Charts
                     Fill = null
                 }
             };
+
+            Charts.Add(this);
         }
 
-        public virtual void AddSeries(IEnumerable<double> values = null, LiveChartsCore.Drawing.IPaint<LiveChartsCore.SkiaSharpView.Drawing.SkiaSharpDrawingContext> fill = null)
+        internal virtual void AddSeries(IEnumerable<double> values = null, LiveChartsCore.Drawing.IPaint<LiveChartsCore.SkiaSharpView.Drawing.SkiaSharpDrawingContext> fill = null)
         {
             values ??= Enumerable.Empty<double>();
             Series = Series.Append(new LineSeries<double>
@@ -68,12 +72,12 @@ namespace GaiaSphere.Charts
             }).ToArray();
             UpdateChart();
         }
-        public virtual void AddValue(double value, int series = 0)
+        internal virtual void AddValue(double value, int series = 0)
         {
             ((List<double>)Series[series].Values).Add(value);
             UpdateChart();
         }
-        public virtual void AddValues(IEnumerable<double> values, int series = 0)
+        internal virtual void AddValues(IEnumerable<double> values, int series = 0)
         {
             ((List<double>)Series[series].Values).AddRange(values);
             UpdateChart();
@@ -85,6 +89,28 @@ namespace GaiaSphere.Charts
             {
                 LVCChart.CoreChart.Update();
             }
+        }
+
+
+        internal static void PageLoaded()
+        {
+            foreach (Chart c in Charts) c.OnPageLoaded();
+        }
+        internal virtual void OnPageLoaded() { CalculateMargin(); }
+        internal static void DisplayInfoChanged()
+        {
+            foreach (Chart c in Charts) c.OnDisplayInfoChanged();
+        }
+        public virtual void OnDisplayInfoChanged() { CalculateMargin(); }
+        internal static void WindowInfoChanged()
+        {
+            foreach (Chart c in Charts) c.OnWindowInfoChanged();
+        }
+        public virtual void OnWindowInfoChanged() { CalculateMargin(); }
+
+        protected virtual void CalculateMargin()
+        {
+            //TODO: Update margins based on density etc.
         }
     }
 }

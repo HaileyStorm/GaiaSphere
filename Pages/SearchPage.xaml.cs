@@ -7,15 +7,16 @@ public partial class SearchPage : ContentPage
 	{
 		InitializeComponent();
 
-		
-
 		Charts.ResultsChart.Instance.LVCChart = Chart;
 	}
 
 	private void OnSearchClicked(object sender, EventArgs e)
 	{
-		lblTitle.Text = this.Window.DisplayDensity.ToString();
 		
-		//lblTitle.Text = DeviceDisplay.Current.MainDisplayInfo.Density.ToString();
+	}
+
+    private void OnPageLoaded(object sender, EventArgs e)
+    {
+		Charts.ResultsChart.Instance.OnPageLoaded();
 	}
 }

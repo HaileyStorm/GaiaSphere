@@ -5,7 +5,8 @@
              Title="SearchPage"
              IconImageSource=""
              xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             Loaded="OnPageLoaded">
     <FlexLayout Direction="Row" Padding="20" Margin="10">
 
         <Grid FlexLayout.Basis="22%" Padding="2" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,85,Auto" ColumnSpacing="10">
@@ -15,7 +16,8 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Start"
                 Margin="0,0,0,15"
-                x:Name="lblTitle">
+                x:Name="lblTitle"
+                x:FieldModifier="Public">
                 <Label.FontSize>
                     <OnPlatform x:TypeArguments="x:Double">
                         <On Platform="Windows, MacCatalyst" Value="32"/>

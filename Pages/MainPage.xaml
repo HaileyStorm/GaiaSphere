@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GaiaSphere.MainPage"
-             xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="GaiaSphere.MainPage"
+            xmlns:local="clr-namespace:GaiaSphere;assembly=GaiaSphere"
+            Loaded="OnPageLoaded"
              >
 
-    <local:SearchPage/>
-    <local:DetailsPage/>
-    <local:TransitsPage/>
+    <local:SearchPage x:Name="SearchPage"/>
+    <local:DetailsPage x:Name="DetailsPage"/>
+    <local:TransitsPage x:Name="TransitsPage"/>
 
 </TabbedPage>
