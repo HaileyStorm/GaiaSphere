@@ -72,7 +72,7 @@
                 BindingContext="{x:Static local:Charts.ResultsChart.Instance}"
                 Series="{Binding Series}"
                 DrawMargin="{Binding Margin}"
-                x:Name="Chart" />
+                x:Name="SearchPageChart" />
         </Grid>
     </FlexLayout>
 </ContentPage>

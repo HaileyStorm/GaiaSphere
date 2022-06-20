@@ -17,8 +17,7 @@
                 BindingContext="{x:Static local:Charts.TransitsChart.Instance}"
                 Series="{Binding Series}"
                 DrawMargin="{Binding Margin}"
-                
-                x:Name="Chart" />
+                x:Name="TransitsPageChart" />
         </Grid>
 
     </FlexLayout>

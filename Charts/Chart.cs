@@ -25,27 +25,14 @@ namespace GaiaSphere.Charts
     {
         // private static List<Chart> Charts = new();
 
-        protected static LiveChartsCore.SkiaSharpView.Maui.CartesianChart lvcchart;
         /// <summary>
         /// The LVCharts object defined in the page XAML where the chart appears. Assign this value in that page's code-behind.
         /// </summary>
-        public virtual LiveChartsCore.SkiaSharpView.Maui.CartesianChart LVCChart
-        {
-            get { return lvcchart; }
-            set { lvcchart = value; }
-        }
+        public virtual LiveChartsCore.SkiaSharpView.Maui.CartesianChart LVCChart { get; set; }
 
-        protected static LiveChartsCore.Measure.Margin margin;
-        public virtual LiveChartsCore.Measure.Margin Margin {
-            get { return margin; }
-            set { margin = value; }
-        }
+        public virtual LiveChartsCore.Measure.Margin Margin { get; set; }
 
-        protected static ISeries[] series { get; set; }
-        public virtual ISeries[] Series {
-            get { return series; }
-            set { series = value; }
-        }
+        public virtual ISeries[] Series { get; set; }
 
         protected Chart()
         {
@@ -100,7 +87,7 @@ namespace GaiaSphere.Charts
         internal virtual void OnPageLoaded(object sender, EventArgs e) { CalculateMargin(); }
         
         internal static event EventHandler DisplayInfoChanged;
-        internal static void OnDisplayInfoChanged_All(object sender, EventArgs e) {  DisplayInfoChanged?.Invoke(sender, e); }
+        internal static void OnDisplayInfoChanged_All(object sender, EventArgs e) { DisplayInfoChanged?.Invoke(sender, e); }
         internal virtual void OnDisplayInfoChanged(object sender, EventArgs e) { CalculateMargin(); }
 
         internal static event EventHandler WindowInfoChanged;
@@ -109,7 +96,14 @@ namespace GaiaSphere.Charts
 
         protected virtual void CalculateMargin()
         {
+            
+            var newMargin = new LiveChartsCore.Measure.Margin();
             //TODO: Update margins based on density etc.
+            if (newMargin != Margin)
+            {
+                //Margin = newMargin;
+                UpdateChart();
+            }
         }
     }
 }
