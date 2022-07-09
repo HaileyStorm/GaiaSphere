@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 namespace GaiaSphere.DataModel
 {
 
-    public class CandidateSummary
+    public class CandidateSummary : SourceSummary
     {
-        /// <summary>
-        /// The Gaia Source ID; the primary key.
-        /// </summary>
-        public ulong SourceID { get; set; }
+        
         /// <summary>
         /// An abbreviated representation of the SourceID; the first and last 3 digits.
         /// </summary>
@@ -24,22 +21,7 @@ namespace GaiaSphere.DataModel
                 return tmpStr[..3] + ".." + tmpStr[^3..];
             }
         }
-        /// <summary>
-        /// Right Ascension (degrees).
-        /// </summary>
-        public double RA { get; set; }
-        /// <summary>
-        /// Declination (degrees).
-        /// </summary>
-        public double Dec { get; set; }
-        /// <summary>
-        /// Distance (parsecs).
-        /// </summary>
-        public float Dist { get; set; }
-        /// <summary>
-        /// Stellar class / spectral type (C, M, K, G, F, A, B ,O).
-        /// </summary>
-        public string Class { get; set; }
+        
         public Color ClassColor
         {
             get
@@ -58,45 +40,19 @@ namespace GaiaSphere.DataModel
                 };
             }
         }
-        /// <summary>
-        /// Effective temperature (kelvin).
-        /// </summary>
-        public float Teff { get; set; }
-        /// <summary>
-        /// Age (billions of years).
-        /// </summary>
-        public float Age { get; set; }
-        /// <summary>
-        /// Magnitude (Vega zero-point).
-        /// </summary>
-        public float Mag { get; set; }
-        
     }
 
-    public class CandidateDetails
-    {
-        /// <summary>
-        /// Radius (sol radius)
-        /// </summary>
-        public float Radius { get; set; }
-        /// <summary>
-        /// Surface gravity (log10[cm/s^2])
-        /// </summary>
-        public float SurfaceG { get; set; }
-        /// <summary>
-        /// Luminosity (sol luminosity)
-        /// </summary>
-        public string Lum { get; set; }
-
-        //TODO: Mass, Flux, metallicity, is late giant, etc.
-    }
-
-    public class CandidatePhotometry
+    public class CandidateDetails : SourceDetails
     {
         
     }
 
-    public class CandidateTransits
+    public class CandidatePhotometry : SourcePhotometry
+    {
+        
+    }
+
+    public class CandidateTransits : SourceTransits
     {
 
     }
@@ -190,6 +146,10 @@ namespace GaiaSphere.DataModel
         public static void AddCandidate(Candidate candidate)
         {
             All.Add(candidate);
+        }
+        public static void AddCandidates(IEnumerable<Candidate> candidates)
+        {
+            All.AddRange(candidates);
         }
     }
 
