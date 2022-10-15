@@ -6,7 +6,6 @@ public partial class MainPage : TabbedPage
 	public MainPage()
 	{
 		InitializeComponent();
-
 	}
 
 	private void OnPageLoaded(object sender, EventArgs e)

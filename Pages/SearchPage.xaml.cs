@@ -7,7 +7,7 @@ public partial class SearchPage : ContentPage
 	{
 		InitializeComponent();
 
-		Charts.ResultsChart.Instance.LVCChart = Chart;
+		Charts.ResultsChart.Instance.LVCChart = SearchPageChart;
 		Loaded += Charts.ResultsChart.Instance.OnPageLoaded;
 		NavigatedTo += Charts.ResultsChart.Instance.OnPageLoaded;
 	}
